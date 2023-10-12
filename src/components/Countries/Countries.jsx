@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Country from '../Country/Country';
+import Modal from '../Modal/Modal';
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
+  const [details, setDetails] = useState([]);
 
   useEffect(() => {
     const url = "https://restcountries.com/v3.1/all";
@@ -10,6 +12,13 @@ const Countries = () => {
       .then((res) => res.json())
       .then((data) => setCountries(data));
   }, []);
+
+  const handleShowDetails = (code) => {
+    const url = `https://restcountries.com/v3.1/alpha/${code}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setDetails(data[0]));
+  };
 
   return (
     <section>
@@ -21,8 +30,12 @@ const Countries = () => {
           <Country
             key={country.cca2}
             country={country}
+            handleShowDetails={handleShowDetails}
           ></Country>
         ))}
+      </div>
+      <div>
+        <Modal details={details} />
       </div>
     </section>
   );
