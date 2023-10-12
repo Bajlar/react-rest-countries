@@ -22,7 +22,7 @@ const Countries = () => {
 
   return (
     <section>
-      <h1 className="text-center text-5xl font-bold text-red-500 py-2">
+      <h1 className="text-center text-3xl text-purple-500 md:text-5xl font-bold md:text-red-500 md:py-2">
         Total Rest Countries: {countries.length}
       </h1>
       <div className="md:w-10/12 mx-auto grid md:grid-cols-3 gap-4 px-4 mt-4">
